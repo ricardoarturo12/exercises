@@ -20,15 +20,13 @@ type Result struct {
 }
 
 var size = runtime.GOMAXPROCS(0)
-
 var jobs = make(chan Job, size)
 var results = make(chan Result, size)
 
 func worker(wg *sync.WaitGroup) {
 	for c := range jobs {
 		fib := Fibonacci(c.integer)
-		output := Result{c, fib}
-		results <- output
+		results <- Result{c, fib}
 		fmt.Printf("realizando fib: %d resultado: %d\n", c.integer, fib)
 	}
 	wg.Done()
@@ -46,7 +44,7 @@ func create(vals []int) {
 func main() {
 	time1 := time.Now()
 
-	values := []int{2, 3, 5, 7, 11, 13, 40, 20, 30, 35, 45, 2, 3, 5, 7, 11, 13, 40, 20}
+	values := []int{ 44, 45, 46, 47, 48, 49, 50}
 
 	nWorkers, err := strconv.Atoi(os.Args[1])
 	if err != nil {
@@ -54,9 +52,7 @@ func main() {
 		return
 	}
 
-	// Task
-	// crea las tareas -> mete los valores a procesar en client
-	// y eso luego se envía a jobs
+	// Task crea las tareas -> mete los valores a procesar en client  y eso luego se envía a jobs
 	go create(values)
 
 	// Pool
