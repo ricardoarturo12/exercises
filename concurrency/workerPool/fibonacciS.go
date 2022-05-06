@@ -5,7 +5,6 @@ import (
 	"time"
 )
 
-
 func Fibonacci(n int) int {
 	if n <= 1 {
 		return n
@@ -13,11 +12,11 @@ func Fibonacci(n int) int {
 	return Fibonacci(n-1) + Fibonacci(n-2)
 }
 
-func main(){
+func main() {
 	time1 := time.Now()
-	values := []int{2, 3, 5, 7, 11, 13, 40, 20, 30, 35,45}
-	for _, value := range values {
-		fmt.Println(Fibonacci(value))
+	// values := []int{1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 13, 40, 20, 30, 35,45}
+	for i := 1; i <= 40; i++ {
+		fmt.Printf("Fib: %d, is: %d\n", i, Fibonacci(i))
 	}
 
 	fmt.Print(time.Since(time1))
