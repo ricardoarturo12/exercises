@@ -2,22 +2,42 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"sort"
+	"strconv"
 	"time"
 )
 
+var values_result = make(map[int]int)
+
 func Fibonacci(n int) int {
 	if n <= 1 {
-		return n
+		values_result[n] = n
 	}
-	return Fibonacci(n-1) + Fibonacci(n-2)
+	if val, ok := values_result[n]; ok {
+		return val
+	}
+	values_result[n] = Fibonacci(n-1) + Fibonacci(n-2)
+	return values_result[n]
 }
 
 func main() {
 	time1 := time.Now()
-	// values := []int{1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 13, 40, 20, 30, 35,45}
-	for i := 1; i <= 40; i++ {
-		fmt.Printf("Fib: %d, is: %d\n", i, Fibonacci(i))
-	}
-
+	// position 0 es la ubicación archivo
+	input_value, _ := strconv.Atoi(os.Args[1])
+	fmt.Printf("Fib: %d, is: %d\n", input_value, Fibonacci(input_value))
 	fmt.Print(time.Since(time1))
+
+	var keys []int
+
+	// imprime solo el key
+	for k := range values_result {
+		keys = append(keys, k)
+	}
+	sort.Ints(keys)
+
+	// recorre el slice
+	for k := range keys {
+		fmt.Printf("Fib: %d, value: %d\n", k, values_result[k])
+	}
 }
