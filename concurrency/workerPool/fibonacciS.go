@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"sort"
@@ -21,10 +22,22 @@ func Fibonacci(n int) int {
 	return values_result[n]
 }
 
+func CustomError(n int) error {
+	if n < 0 {
+		return errors.New("debe ingresar valor > 0")
+	}
+	return nil
+}
+
 func main() {
 	time1 := time.Now()
 	// position 0 es la ubicación archivo
 	input_value, _ := strconv.Atoi(os.Args[1])
+	if err := CustomError(input_value); err != nil {
+		fmt.Println(err)
+		return
+	}
+
 	fib := Fibonacci(input_value)
 	fmt.Printf("Fib: %d, is: %d\n", input_value, fib)
 	defer fmt.Print(time.Since(time1))
