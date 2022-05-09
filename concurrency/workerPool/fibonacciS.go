@@ -25,18 +25,19 @@ func main() {
 	time1 := time.Now()
 	// position 0 es la ubicación archivo
 	input_value, _ := strconv.Atoi(os.Args[1])
-	fmt.Printf("Fib: %d, is: %d\n", input_value, Fibonacci(input_value))
-	fmt.Print(time.Since(time1))
+	fib := Fibonacci(input_value)
+	fmt.Printf("Fib: %d, is: %d\n", input_value, fib)
+	defer fmt.Print(time.Since(time1))
 
 	var keys []int
 
-	// imprime solo el key
+	// imprime solo el key -> y agrega a un slice
 	for k := range values_result {
 		keys = append(keys, k)
 	}
 	sort.Ints(keys)
 
-	// recorre el slice
+	// recorre el slice e imprime el resultado
 	for k := range keys {
 		fmt.Printf("Fib: %d, value: %d\n", k, values_result[k])
 	}
