@@ -1,0 +1,32 @@
+{
+	"books": [
+		{
+            "id": 101, 
+            "title": "Modern Calculus", 
+            "publisher":
+                {
+                    "by":"Dover Publication", 
+                    "edition":1994
+                }
+        },
+		{
+            "id": 102, 
+            "title": "Graph Theory", 
+            "publisher":
+                {
+                    "by":"Dover Publication", 
+                    "edition":2004
+                }
+            },
+		{
+            "id": 103, 
+            "title": "Automata Theory", 
+            "publisher":
+                {
+                    "by":"Pearson", 
+                    "edition":2008
+                }
+        }
+	]
+}
+
